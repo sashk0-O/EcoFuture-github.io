@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+html {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: #f0f7f1;
+  text-align: center;
+  padding: 24px;
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-top: max(24px, env(safe-area-inset-top, 0));
+  padding-right: max(24px, env(safe-area-inset-right, 0));
+  padding-bottom: max(24px, env(safe-area-inset-bottom, 0));
+  padding-left: max(24px, env(safe-area-inset-left, 0));
+}
+
+/* ===== РАХУНОК ЗВЕРХУ ЛІВОРУЧ ===== */
+.score-top {
+  position: fixed;
+  top: max(15px, env(safe-area-inset-top, 0));
+  left: max(15px, env(safe-area-inset-left, 0));
+  background: #ffffff;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  color: #1b5e20;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+header {
+  margin-bottom: 28px;
+}
+
+header p {
+  color: #5a6e5c;
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
+
+h1 {
+  color: #1b5e20;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* ===== СМІТНИКИ ===== */
+.bins {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-bottom: 44px;
+}
+
+.bin {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid rgba(27, 94, 32, 0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 15px;
+  width: 170px;
+  height: 200px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bin:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(27, 94, 32, 0.12);
+  border-color: rgba(27, 94, 32, 0.2);
+}
+
+.bin.drag-over {
+  border-color: #81c784;
+  box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.3), 0 6px 16px rgba(27, 94, 32, 0.12);
+  transform: translateY(-3px);
+}
+
+.bin img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.bin img:hover {
+  transform: scale(1.05);
+}
+
+.bin p {
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #1b5e20;
+}
+
+/* ===== ПРЕДМЕТИ ЗВЕРХУ ===== */
+.trash-area {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-bottom: 30px;
+}
+
+.trash {
+  width: 90px;
+  height: 90px;
+  cursor: grab;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.trash:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* ===== ТАБЛИЦЯ НИЗОМ ЗІ СМІТТЯМ ===== */
+.trash-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 120px);
+  gap: 18px;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 36px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.trash-cell {
+  background: #ffffff;
+  width: 120px;
+  height: 120px;
+  border-radius: 14px;
+  border: 1px solid rgba(27, 94, 32, 0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  transition: 0.2s ease;
+}
+
+.trash-cell img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+}
+
+/* ===== ЕФЕКТИ ===== */
+.correct {
+  background-color: #c8f7c5;
+  border-color: #81c784;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.wrong {
+  background-color: #f7c5c5;
+  border-color: #e57373;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* ===== ФУТЕР ===== */
+footer {
+  margin-top: 44px;
+  padding: 18px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: #1b5e20;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #2e7d32;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: center;
+}
+
+.score-box {
+  background: #fff;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1b5e20;
+  border: 2px solid #81c784;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet and below (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .bins {
+    gap: 22px;
+  }
+
+  .bin {
+    width: 150px;
+    height: 180px;
+  }
+
+  .bin img {
+    width: 130px;
+    height: 130px;
+  }
+
+  .trash-grid {
+    grid-template-columns: repeat(4, 100px);
+    gap: 14px;
+  }
+}
+
+/* Mobile devices (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  body {
+    padding: 12px;
+  }
+
+  header {
+    margin-bottom: 20px;
+  }
+
+  .header-top {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .header-top h1 {
+    font-size: 1.15rem;
+  }
+
+  .score-box {
+    font-size: 1rem;
+    padding: 6px 12px;
+  }
+
+  .bins {
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+
+  .bin {
+    width: 120px;
+    height: 150px;
+    padding: 10px;
+  }
+
+  .bin img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .bin p {
+    font-size: 0.85rem;
+    margin-top: 5px;
+  }
+
+  .trash-grid {
+    grid-template-columns: repeat(3, 90px);
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .trash {
+    width: 70px;
+    height: 70px;
+  }
+
+  footer {
+    margin-top: 30px;
+  }
+}
+
+/* Small mobile devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 8px;
+  }
+
+  .header-top h1 {
+    font-size: 1rem;
+  }
+
+  .score-box {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+  }
+
+  .bins {
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .bin {
+    width: 100px;
+    height: 130px;
+    padding: 8px;
+  }
+
+  .bin img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .bin p {
+    font-size: 0.75rem;
+  }
+
+  .trash-grid {
+    grid-template-columns: repeat(3, 75px);
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .trash {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .bins {
+    gap: 12px;
+  }
+
+  .bin {
+    width: 110px;
+    height: 140px;
+  }
+
+  .trash-grid {
+    grid-template-columns: repeat(4, 80px);
+  }
+}

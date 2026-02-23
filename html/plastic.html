@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Пластик — EcoFuture</title>
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+
+
+<body>
+<header>
+  <h1>🧴 Пластик</h1>
+  <nav>
+    <a href="../index.html">🏠 Головна</a>
+    <a href="glass.html">🥛 Скло</a>
+    <a href="map.html">🗺️Карта</a>
+    <a href="game.html">🎮 Міні-гра</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ВІДЕО -->
+  <video controls width="100%">
+        <source src="../video/Проблема%20пластику.mp4" type="video/mp4">
+  </video>
+  
+  <!-- КОМІКС -->
+  <section>
+  <h2>📖 Комікс-діалог</h2>
+  <p>Натисни на персонажа або хмаринку — діалог продовжиться 👇</p>
+
+  <div class="dialog-comic" onclick="nextDialogue()">
+
+    <!-- ЛІВИЙ -->
+    <div class="dialog-character left">
+      <div class="speech-bubble" id="leftBubble"></div>
+      <div class="avatar">
+            <img src="../images/boy.png" alt="Еко-герой">
+      </div>
+      <strong>Еко-Герой</strong>
+    </div>
+
+    <!-- ПРАВИЙ -->
+    <div class="dialog-character right">
+      <div class="speech-bubble" id="rightBubble"></div>
+      <div class="avatar">
+            <img src="../images/girl.png" alt="Еко-герой">
+      </div>
+      <strong>Еко-Герой</strong>
+    </div>
+
+  </div>
+</section>
+  <div class="comic-photo">
+  <img src="../images/пластик.jpg" alt="Фото автора">
+</div>
+
+
+  <!-- ІНТЕРАКТИВ "ОБЕРИ СВІЙ ШЛЯХ" -->
+  <section>
+    <h2>🎮 Обери свій шлях</h2>
+    <p>Що станеться через 10 років залежить від твого рішення:</p>
+
+    <button class="topic-btn" onclick="showResult('good')">♻️ Здати пляшку на переробку</button>
+    <button class="topic-btn" onclick="showResult('bad')">🗑 Викинути в ліс</button>
+
+    <p id="result" style="font-weight:bold; margin-top:10px;"></p>
+  </section>
+</main>
+
+
+
+<!-- СКРИПТ -->
+<script>
+function showResult(choice) {
+  const r = document.getElementById('result');
+  if (choice === 'good') {
+    r.innerText = "Майбутнє: чисті ліси та річки, менший обсяг відходів!";
+  } else {
+    r.innerText = "Майбутнє: мікропластик у ґрунті, воді та їжі.";
+  }
+}
+
+
+
+const dialog = [
+  {
+    left: "Мені важко дихати… Пластик заполонив мої ліси й океани 😢",
+    right: "Я бачу проблему і хочу допомогти! З чого почати?"
+  },
+  {
+    left: "Почни з простого: не викидай пластик у природу.",
+    right: "Добре! Я буду сортувати сміття ♻️"
+  },
+  {
+    left: "Це допоможе зменшити кількість сміття і мікропластику.",
+    right: "А ще я розкажу про це друзям!"
+  },
+  {
+    left: "Разом ми зможемо врятувати майбутнє 🌱",
+    right: "Я обіцяю берегти планету!"
+  }
+];
+
+let dialogIndex = 0;
+
+const leftBubble = document.getElementById("leftBubble");
+const rightBubble = document.getElementById("rightBubble");
+
+function renderDialog() {
+  leftBubble.textContent = dialog[dialogIndex].left;
+  rightBubble.textContent = dialog[dialogIndex].right;
+}
+
+function nextDialogue() {
+  dialogIndex++;
+  if (dialogIndex >= dialog.length) dialogIndex = 0;
+  renderDialog();
+}
+
+// Початковий текст
+renderDialog();
+
+
+
+</script>
+<footer>
+  <p>© 2026 EcoFuture — Пластик</p>
+</footer>
+
+</body>
+</html>
