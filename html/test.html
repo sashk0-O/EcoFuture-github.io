@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Тест — EcoFuture</title>
+<link rel="stylesheet" href="../css/index.css">
+
+<style>
+/* ===== LAYOUT ===== */
+body{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+main{
+  flex:1;
+}
+
+.test-layout{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:24px;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+
+.topic-btnn{
+  width:100%;
+  margin:6px 0;
+  padding:12px;
+  border:none;
+  border-radius:var(--radius);
+  background:#e8f5e9;
+  cursor:pointer;
+  font-weight:bold;
+  transition:.25s;
+}
+
+.topic-btnn:hover{
+  background:#a5d6a7;
+  transform:translateY(-2px);
+}
+
+/* ===== TEST AREA ===== */
+.test-area{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:30px;
+  box-shadow:var(--shadow);
+  min-height:420px;
+}
+
+/* ===== START BUTTON ===== */
+.start-wrapper{
+  text-align:center;
+  margin:30px 0;
+}
+
+.start-btn{
+  padding:14px 28px;
+  border:none;
+  border-radius:var(--radius);
+  background:#66bb6a;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.start-btn:hover{
+  transform:scale(1.06);
+  box-shadow:0 6px 18px rgba(0,0,0,.2);
+}
+
+/* ===== ANSWERS ===== */
+.answer{
+  display:block;
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border:none;
+  border-radius:var(--radius);
+  background:#e8f5e9;
+  cursor:pointer;
+  font-size:15px;
+  transition:.2s;
+}
+
+.answer:hover{
+  background:#a5d6a7;
+  transform:translateX(4px);
+}
+
+/* ===== FADE ANIMATION ===== */
+.fade{
+  animation:fadeIn .35s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(8px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+#result{
+  font-size:24px;
+  font-weight:bold;
+  text-align:center;
+  margin-top:20px;
+}
+
+@media(max-width:768px){
+  .test-layout{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🧠 Тест знань</h1>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  <nav id="mainNav">
+    <a href="../index.html">🏠 Головна</a>
+    <a href="map.html">🗺️ Карта</a>
+    <a href="game.html">🎮 Міні-гра</a>
+  </nav>
+</header>
+
+<main>
+  <div class="test-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h3>Теми</h3>
+
+      <button class="topic-btnn" onclick="setTopic('plastic')">🥤 Пластик</button>
+      <button class="topic-btnn" onclick="setTopic('glass')">🍾 Скло</button>
+      <button class="topic-btnn" onclick="setTopic('metal')">🔩 Метал</button>
+      <button class="topic-btnn" onclick="setTopic('organic')">🍎 Органіка</button>
+      <button class="topic-btnn" onclick="setTopic('battery')"> 🔋Батарейки</button>
+      <button class="topic-btnn" onclick="setTopic('electronic')"> 💻Електроніка</button>
+      <button class="topic-btnn" onclick="setTopic('all')">🌍 Загальний тест</button>
+    </aside>
+
+    <!-- TEST -->
+    <section class="test-area">
+      <h2 id="testTitle">Оберіть тему</h2>
+
+      <div class="start-wrapper">
+        <button id="startBtn" class="start-btn" onclick="startTest()" style="display:none;">
+          ▶ Почати тест
+        </button>
+      </div>
+
+      <div id="progress"></div>
+      <h3 id="question"></h3>
+      <div id="answers"></div>
+      <div id="result"></div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 EcoFuture — Тест</p>
+</footer>
+
+<script>
+// ===== MENU =====
+function toggleMenu(){
+  document.getElementById('mainNav').classList.toggle('active');
+}
+
+// ===== QUESTIONS =====
+const questionBank={
+
+// 🥤 ПЛАСТИК
+plastic:[
+{q:"Куди викидати пластикову пляшку?",a:["У пластик","В органіку","У скло"],correct:0},
+{q:"Чи переробляється пластик?",a:["Так","Ні","Ніколи"],correct:0},
+{q:"Пластик розкладається…",a:["Дуже довго","За день","За тиждень"],correct:0},
+{q:"Що робити з пластиковою упаковкою?",a:["Сортувати","Спалити","Викинути будь-де"],correct:0}
+],
+
+// 🍾 СКЛО
+glass:[
+{q:"Куди скляну банку?",a:["У скло","У папір","В органіку"],correct:0},
+{q:"Чи можна переробляти скло?",a:["Так","Ні","Іноді"],correct:0},
+{q:"Перед викиданням скло потрібно…",a:["Очистити","Розбити","Нічого"],correct:0}
+],
+
+// 🔩 МЕТАЛ
+metal:[
+{q:"Чи можна переробляти метал?",a:["Так","Ні","Іноді"],correct:0},
+{q:"Бляшанки потрібно…",a:["Здавати в метал","В органіку","У папір"],correct:0},
+{q:"Метал корисно сортувати тому що…",a:["Його переробляють","Це модно","Без причини"],correct:0}
+],
+
+// 🍎 ОРГАНІКА
+organic:[
+{q:"Що є органікою?",a:["Бананова шкірка","Метал","Скло"],correct:0},
+{q:"Органіка — це:",a:["Харчові відходи","Батарейки","Пластик"],correct:0},
+{q:"Органічні відходи можна…",a:["Компостувати","Спалювати","Змішувати"],correct:0},
+{q:"До органіки належить…",a:["Яблучний огризок","Пляшка","Банка"],correct:0}
+],
+
+// 🔋 БАТАРЕЙКИ
+battery:[
+{q:"Батарейки потрібно…",a:["Здавати окремо","Викидати в смітник","В органіку"],correct:0},
+{q:"Чому батарейки небезпечні?",a:["Містять токсини","Бо великі","Бо легкі"],correct:0},
+{q:"Куди здавати батарейки?",a:["У спецконтейнери","У папір","У пластик"],correct:0}
+],
+
+// 💻 ЕЛЕКТРОНІКА
+electronic:[
+{q:"Стару електроніку потрібно…",a:["Здавати на переробку","Викидати у двір","Ламати"],correct:0},
+{q:"Телефони містять…",a:["Цінні метали","Тільки пластик","Нічого"],correct:0},
+{q:"Електронні відходи — це…",a:["Небезпечні відходи","Звичайне сміття","Органіка"],correct:0}
+]
+};
+
+// 🌍 ЗАГАЛЬНИЙ ТЕСТ
+questionBank.all=Object.values(questionBank).flat();
+
+// ===== STATE =====
+let quiz=[];
+let current=0;
+let score=0;
+
+const titleEl=document.getElementById("testTitle");
+const startBtn=document.getElementById("startBtn");
+const progressEl=document.getElementById("progress");
+const questionEl=document.getElementById("question");
+const answersEl=document.getElementById("answers");
+const resultEl=document.getElementById("result");
+
+// ===== SHUFFLE (КРАЩИЙ) =====
+function shuffle(array){
+  for(let i=array.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [array[i],array[j]]=[array[j],array[i]];
+  }
+  return array;
+}
+
+// ===== SELECT TOPIC =====
+function setTopic(topic){
+  quiz=shuffle([...questionBank[topic]]);
+  titleEl.textContent="Тема обрана";
+  startBtn.style.display="inline-block";
+  resetView();
+}
+
+function resetView(){
+  progressEl.textContent="";
+  questionEl.textContent="";
+  answersEl.innerHTML="";
+  resultEl.textContent="";
+}
+
+// ===== START =====
+function startTest(){
+  current=0;
+  score=0;
+  startBtn.style.display="none";
+  showQuestion();
+}
+
+// ===== SHOW QUESTION =====
+function showQuestion(){
+  const q=quiz[current];
+
+  progressEl.textContent=`Питання ${current+1} з ${quiz.length}`;
+  questionEl.textContent=q.q;
+  questionEl.className="fade";
+
+  answersEl.innerHTML="";
+  q.a.forEach((text,i)=>{
+    const btn=document.createElement("button");
+    btn.className="answer fade";
+    btn.textContent=text;
+    btn.onclick=()=>selectAnswer(i);
+    answersEl.appendChild(btn);
+  });
+}
+
+function selectAnswer(i){
+  if(i===quiz[current].correct) score++;
+  current++;
+
+  if(current<quiz.length){
+    setTimeout(showQuestion,200);
+  }else{
+    showResult();
+  }
+}
+
+function showResult(){
+  questionEl.textContent="";
+  answersEl.innerHTML="";
+  progressEl.textContent="Тест завершено";
+
+  let msg="";
+  if(score>=Math.ceil(quiz.length*0.8)) msg="🔥 Відмінно!";
+  else if(score>=Math.ceil(quiz.length*0.5)) msg="👍 Добре!";
+  else msg="📚 Варто повторити";
+
+  resultEl.textContent=`Твій результат: ${score} / ${quiz.length} — ${msg}`;
+}
+</script>
+
+</body>
+</html>
