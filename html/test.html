@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="uk">
 <head>
 <meta charset="utf-8">
@@ -7,230 +8,266 @@
 <link rel="stylesheet" href="../css/index.css">
 
 <style>
-/* ===== LAYOUT ===== */
 body{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
+min-height:100vh;
+display:flex;
+flex-direction:column;
 }
 
 main{
-  flex:1;
+flex:1;
 }
 
 .test-layout{
-  display:grid;
-  grid-template-columns:260px 1fr;
-  gap:24px;
+display:grid;
+grid-template-columns:260px 1fr;
+gap:24px;
 }
 
-/* ===== SIDEBAR ===== */
 .sidebar{
-  background:var(--card);
-  border-radius:var(--radius);
-  padding:18px;
-  box-shadow:var(--shadow);
+background:var(--card);
+border-radius:var(--radius);
+padding:18px;
+box-shadow:var(--shadow);
 }
 
 .topic-btnn{
-  width:100%;
-  margin:6px 0;
-  padding:12px;
-  border:none;
-  border-radius:var(--radius);
-  background:#e8f5e9;
-  cursor:pointer;
-  font-weight:bold;
-  transition:.25s;
+width:100%;
+margin:6px 0;
+padding:12px;
+border:none;
+border-radius:var(--radius);
+background:#e8f5e9;
+cursor:pointer;
+font-weight:bold;
+transition:.25s;
 }
 
 .topic-btnn:hover{
-  background:#a5d6a7;
-  transform:translateY(-2px);
+background:#a5d6a7;
+transform:translateY(-2px);
 }
 
-/* ===== TEST AREA ===== */
 .test-area{
-  background:var(--card);
-  border-radius:var(--radius);
-  padding:30px;
-  box-shadow:var(--shadow);
-  min-height:420px;
+background:var(--card);
+border-radius:var(--radius);
+padding:30px;
+box-shadow:var(--shadow);
+min-height:420px;
 }
 
-/* ===== START BUTTON ===== */
 .start-wrapper{
-  text-align:center;
-  margin:30px 0;
+text-align:center;
+margin:30px 0;
 }
 
 .start-btn{
-  padding:14px 28px;
-  border:none;
-  border-radius:var(--radius);
-  background:#66bb6a;
-  color:white;
-  font-size:18px;
-  cursor:pointer;
-  transition:.25s;
+padding:14px 28px;
+border:none;
+border-radius:var(--radius);
+background:#66bb6a;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:.25s;
 }
 
 .start-btn:hover{
-  transform:scale(1.06);
-  box-shadow:0 6px 18px rgba(0,0,0,.2);
+transform:scale(1.06);
+box-shadow:0 6px 18px rgba(0,0,0,.2);
 }
 
-/* ===== ANSWERS ===== */
 .answer{
-  display:block;
-  width:100%;
-  padding:14px;
-  margin:10px 0;
-  border:none;
-  border-radius:var(--radius);
-  background:#e8f5e9;
-  cursor:pointer;
-  font-size:15px;
-  transition:.2s;
+display:block;
+width:100%;
+padding:14px;
+margin:10px 0;
+border:none;
+border-radius:var(--radius);
+background:#e8f5e9;
+cursor:pointer;
+font-size:15px;
+transition:.2s;
 }
 
 .answer:hover{
-  background:#a5d6a7;
-  transform:translateX(4px);
+background:#a5d6a7;
+transform:translateX(4px);
 }
 
-/* ===== FADE ANIMATION ===== */
 .fade{
-  animation:fadeIn .35s ease;
+animation:fadeIn .35s ease;
 }
 
 @keyframes fadeIn{
-  from{opacity:0; transform:translateY(8px);}
-  to{opacity:1; transform:translateY(0);}
+from{opacity:0; transform:translateY(8px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 #result{
-  font-size:24px;
-  font-weight:bold;
-  text-align:center;
-  margin-top:20px;
+font-size:24px;
+font-weight:bold;
+text-align:center;
+margin-top:20px;
 }
 
 @media(max-width:768px){
-  .test-layout{grid-template-columns:1fr;}
+.test-layout{grid-template-columns:1fr;}
 }
 </style>
+
 </head>
 
 <body>
 
 <header>
-  <h1>🧠 Тест знань</h1>
-  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-  <nav id="mainNav">
-    <a href="../index.html">🏠 Головна</a>
-    <a href="map.html">🗺️ Карта</a>
-    <a href="game.html">🎮 Міні-гра</a>
-  </nav>
+<h1>🧠 Тест знань</h1>
+<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+<nav id="mainNav">
+<a href="../index.html">🏠 Головна</a>
+<a href="map.html">🗺️ Карта</a>
+<a href="game.html">🎮 Міні-гра</a>
+</nav>
 </header>
 
 <main>
-  <div class="test-layout">
+<div class="test-layout">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <h3>Теми</h3>
+<aside class="sidebar">
+<h3>Теми</h3>
 
-      <button class="topic-btnn" onclick="setTopic('plastic')">🥤 Пластик</button>
-      <button class="topic-btnn" onclick="setTopic('glass')">🍾 Скло</button>
-      <button class="topic-btnn" onclick="setTopic('metal')">🔩 Метал</button>
-      <button class="topic-btnn" onclick="setTopic('organic')">🍎 Органіка</button>
-      <button class="topic-btnn" onclick="setTopic('battery')"> 🔋Батарейки</button>
-      <button class="topic-btnn" onclick="setTopic('electronic')"> 💻Електроніка</button>
-      <button class="topic-btnn" onclick="setTopic('all')">🌍 Загальний тест</button>
-    </aside>
+<button class="topic-btnn" onclick="setTopic('plastic')">🧴 Пластик</button> <button class="topic-btnn" onclick="setTopic('glass')">🥛 Скло</button> <button class="topic-btnn" onclick="setTopic('metal')">🔩 Метал</button> <button class="topic-btnn" onclick="setTopic('organic')">🍎 Органічні відходи</button> <button class="topic-btnn" onclick="setTopic('battery')">🔋 Батарейки</button> <button class="topic-btnn" onclick="setTopic('electronic')">💻 Електроніка</button> <button class="topic-btnn" onclick="setTopic('general')">🌍 Загальний тест</button>
 
-    <!-- TEST -->
-    <section class="test-area">
-      <h2 id="testTitle">Оберіть тему</h2>
+</aside>
 
-      <div class="start-wrapper">
-        <button id="startBtn" class="start-btn" onclick="startTest()" style="display:none;">
-          ▶ Почати тест
-        </button>
-      </div>
+<section class="test-area">
+<h2 id="testTitle">Оберіть тему</h2>
 
-      <div id="progress"></div>
-      <h3 id="question"></h3>
-      <div id="answers"></div>
-      <div id="result"></div>
-    </section>
+<div class="start-wrapper">
+<button id="startBtn" class="start-btn" onclick="startTest()" style="display:none;">
+▶ Почати тест
+</button>
+</div>
 
-  </div>
+<div id="progress"></div>
+<h3 id="question"></h3>
+<div id="answers"></div>
+<div id="result"></div>
+
+</section>
+</div>
 </main>
 
 <footer>
-  <p>© 2026 EcoFuture — Тест</p>
+<p>© 2026 EcoFuture — Тест</p>
 </footer>
 
 <script>
-// ===== MENU =====
+
 function toggleMenu(){
-  document.getElementById('mainNav').classList.toggle('active');
+document.getElementById('mainNav').classList.toggle('active');
 }
 
-// ===== QUESTIONS =====
 const questionBank={
 
-// 🥤 ПЛАСТИК
 plastic:[
-{q:"Куди викидати пластикову пляшку?",a:["У пластик","В органіку","У скло"],correct:0},
-{q:"Чи переробляється пластик?",a:["Так","Ні","Ніколи"],correct:0},
-{q:"Пластик розкладається…",a:["Дуже довго","За день","За тиждень"],correct:0},
-{q:"Що робити з пластиковою упаковкою?",a:["Сортувати","Спалити","Викинути будь-де"],correct:0}
+{q:"Що найчастіше роблять із пластику?",a:["Пляшку","Склянку","Ложку"],correct:0},
+{q:"Чому пластик небезпечний?",a:["Довго розкладається","Швидко зникає","Стає водою"],correct:0},
+{q:"Що краще використовувати замість пакета?",a:["Еко-сумку","Новий пакет","Плівку"],correct:0},
+{q:"Куди викидати пластикову пляшку?",a:["У пластик","У скло","У органіку"],correct:0},
+{q:"Що роблять із переробленого пластику?",a:["Нові речі","Воду","Пісок"],correct:0},
+{q:"Що шкодить морським тваринам?",a:["Пластик","Листя","Пісок"],correct:0},
+{q:"Що треба зробити перед переробкою?",a:["Спорожнити пляшку","Закопати","Розбити"],correct:0},
+{q:"Що краще для природи?",a:["Багаторазова пляшка","Одноразова","Трубочка"],correct:0},
+{q:"Що часто пластикове?",a:["Кришка","Банка","Ложка"],correct:0},
+{q:"Що допомагає зменшити пластик?",a:["Повторне використання","Більше купувати","Викидати"],correct:0}
 ],
 
-// 🍾 СКЛО
 glass:[
-{q:"Куди скляну банку?",a:["У скло","У папір","В органіку"],correct:0},
-{q:"Чи можна переробляти скло?",a:["Так","Ні","Іноді"],correct:0},
-{q:"Перед викиданням скло потрібно…",a:["Очистити","Розбити","Нічого"],correct:0}
+{q:"Що роблять із переробленого скла?",a:["Нові пляшки","Пластик","Папір"],correct:0},
+{q:"Чому скло добре переробляти?",a:["Можна багато разів","Зникає","Стає водою"],correct:0},
+{q:"Перед здачею скло потрібно…",a:["Промити","Розбити","Закопати"],correct:0},
+{q:"Куди викидають скло?",a:["У скло","У папір","У метал"],correct:0},
+{q:"Що зроблено зі скла?",a:["Банка","Пакет","Бляшанка"],correct:0},
+{q:"Скло у природі…",a:["Дуже довго не розкладається","Зникає","Стає деревом"],correct:0},
+{q:"Що робити зі старою банкою?",a:["Переробити","Кинути","Закопати"],correct:0},
+{q:"Що краще зробити з пляшкою?",a:["Здати на переробку","Кинути","Розбити"],correct:0},
+{q:"Який матеріал прозорий?",a:["Скло","Папір","Пластик"],correct:0},
+{q:"Із переробленого скла роблять…",a:["Нові банки","Батарейки","Пакети"],correct:0}
 ],
 
-// 🔩 МЕТАЛ
 metal:[
-{q:"Чи можна переробляти метал?",a:["Так","Ні","Іноді"],correct:0},
-{q:"Бляшанки потрібно…",a:["Здавати в метал","В органіку","У папір"],correct:0},
-{q:"Метал корисно сортувати тому що…",a:["Його переробляють","Це модно","Без причини"],correct:0}
+{q:"Що зроблено з металу?",a:["Консервна банка","Пакет","Картон"],correct:0},
+{q:"Чому метал переробляють?",a:["Зберегти ресурси","Зробити сміття","Спалити"],correct:0},
+{q:"Що роблять із бляшанками?",a:["Здають на метал","Кидають","Закопують"],correct:0},
+{q:"Що роблять із металу?",a:["Інструменти","Папір","Пісок"],correct:0},
+{q:"Метал можна переробляти…",a:["Багато разів","1 раз","Ніколи"],correct:0},
+{q:"Що притягує магніт?",a:["Метал","Папір","Скло"],correct:0},
+{q:"Що робити зі старою ложкою?",a:["Переробити","Кинути","Закопати"],correct:0},
+{q:"Метал сортують тому що…",a:["Його переробляють","Він красивий","Без причини"],correct:0},
+{q:"Що роблять із переробленого металу?",a:["Нові речі","Воду","Пісок"],correct:0},
+{q:"Який предмет металевий?",a:["Цвях","Пляшка","Листок"],correct:0}
 ],
 
-// 🍎 ОРГАНІКА
 organic:[
-{q:"Що є органікою?",a:["Бананова шкірка","Метал","Скло"],correct:0},
-{q:"Органіка — це:",a:["Харчові відходи","Батарейки","Пластик"],correct:0},
-{q:"Органічні відходи можна…",a:["Компостувати","Спалювати","Змішувати"],correct:0},
-{q:"До органіки належить…",a:["Яблучний огризок","Пляшка","Банка"],correct:0}
+{q:"Що належить до органіки?",a:["Шкірка банана","Пляшка","Батарейка"],correct:0},
+{q:"Що роблять з органікою?",a:["Компост","Пластик","Метал"],correct:0},
+{q:"Що швидко розкладається?",a:["Яблуко","Пластик","Скло"],correct:0},
+{q:"Органіка — це…",a:["Залишки їжі","Батарейки","Телефони"],correct:0},
+{q:"Що стане добривом?",a:["Компост","Метал","Скло"],correct:0},
+{q:"Що входить до органіки?",a:["Шкірки овочів","Банка","Пакет"],correct:0},
+{q:"Що розкладається природно?",a:["Листя","Пластик","Скло"],correct:0},
+{q:"Органічні відходи…",a:["Покращують ґрунт","Роблять метал","Роблять скло"],correct:0},
+{q:"Що можна компостувати?",a:["Фрукти","Батарейки","Телефони"],correct:0},
+{q:"Приклад органіки:",a:["Картопляна шкірка","Банка","Пляшка"],correct:0}
 ],
 
-// 🔋 БАТАРЕЙКИ
 battery:[
-{q:"Батарейки потрібно…",a:["Здавати окремо","Викидати в смітник","В органіку"],correct:0},
-{q:"Чому батарейки небезпечні?",a:["Містять токсини","Бо великі","Бо легкі"],correct:0},
-{q:"Куди здавати батарейки?",a:["У спецконтейнери","У папір","У пластик"],correct:0}
+{q:"Чому батарейки небезпечні?",a:["Мають токсини","Швидко зникають","Корисні"],correct:0},
+{q:"Куди їх здавати?",a:["У спецконтейнери","У папір","У пластик"],correct:0},
+{q:"Якщо батарейку закопати…",a:["Забрудниться ґрунт","Стане вода","Нічого"],correct:0},
+{q:"Що працює на батарейках?",a:["Пульт","Банка","Ложка"],correct:0},
+{q:"Чи можна їх викидати у смітник?",a:["Ні","Так","Іноді"],correct:0},
+{q:"Що містять батарейки?",a:["Хімічні речовини","Папір","Пісок"],correct:0},
+{q:"Що можуть забруднити?",a:["Воду і ґрунт","Повітря","Нічого"],correct:0},
+{q:"Як поводитись зі старими батарейками?",a:["Здати окремо","Кинути","Закопати"],correct:0},
+{q:"Чому їх збирають окремо?",a:["Щоб переробити","Бо красиві","Бо великі"],correct:0},
+{q:"Якщо батарейка у воді…",a:["Вода забрудниться","Вода чиста","Нічого"],correct:0}
 ],
 
-// 💻 ЕЛЕКТРОНІКА
 electronic:[
-{q:"Стару електроніку потрібно…",a:["Здавати на переробку","Викидати у двір","Ламати"],correct:0},
-{q:"Телефони містять…",a:["Цінні метали","Тільки пластик","Нічого"],correct:0},
-{q:"Електронні відходи — це…",a:["Небезпечні відходи","Звичайне сміття","Органіка"],correct:0}
+{q:"Що є електронікою?",a:["Телефон","Банка","Пакет"],correct:0},
+{q:"Чому її не можна викидати?",a:["Має небезпечні речовини","Зникає","Паперова"],correct:0},
+{q:"Що роблять зі старими комп'ютерами?",a:["Переробляють","Кидають","Закопують"],correct:0},
+{q:"Електронний пристрій:",a:["Ноутбук","Банка","Яблуко"],correct:0},
+{q:"Що містить електроніка?",a:["Цінні метали","Пісок","Листя"],correct:0},
+{q:"Що роблять із е-відходами?",a:["Переробляють","Спалюють","Закопують"],correct:0},
+{q:"Електроніка може забруднити…",a:["Ґрунт і воду","Тільки повітря","Нічого"],correct:0},
+{q:"Що зробити зі старим телефоном?",a:["Здати на переробку","Кинути","Закопати"],correct:0},
+{q:"Чому їх збирають окремо?",a:["Через токсини","Бо красиві","Бо легкі"],correct:0},
+{q:"Що є електронним?",a:["Планшет","Банка","Пляшка"],correct:0}
+],
+
+general:[
+{q:"Який матеріал розкладається найдовше?",a:["Пластик","Листя","Фрукти"],correct:0},
+{q:"Чому батарейки не можна викидати у смітник?",a:["Вони забруднюють ґрунт і воду","Вони зникають","Вони негабаритні"],correct:0},
+{q:"Що треба зробити перед здачею пластику на переробку?",a:["Очистити і спустошити","Закопати","Розламати"],correct:0},
+{q:"Що з органічних відходів можна зробити, щоб допомогти рослинам?",a:["Компост","Спалити","Закопати"],correct:0},
+{q:"Що зменшує кількість сміття на планеті?",a:["Сортування та переробка","Купувати більше","Викидати у річку"],correct:0},
+{q:"Що відбувається з пластиковими пакетами у морі?",a:["Шкодять тваринам","Розчиняються","Перетворюються на воду"],correct:0},
+{q:"Що краще багаторазове: сумка чи пакет?",a:["Сумка","Пакет","Плівка"],correct:0},
+{q:"Який матеріал можна переробляти майже безкінечно?",a:["Скло","Листя","Їжа"],correct:0},
+{q:"Що небезпечне для води, ґрунту та тварин?",a:["Батарейки","Фрукти","Листя"],correct:0},
+{q:"З переробленого пластику та металу роблять…",a:["Нові речі","Пісок","Воду"],correct:0},
+{q:"Чому сортування сміття важливе?",a:["Щоб його переробити","Щоб збільшити сміття","Щоб спалити"],correct:0},
+{q:"Що забруднює ґрунт і воду при неправильному утилізації?",a:["Батарейка","Листя","Фрукти"],correct:0},
+{q:"Що можна переробляти безкінечно?",a:["Скло","Харчові відходи","Папір"],correct:0},
+{q:"Після пікніка треба…",a:["Прибрати сміття","Залишити сміття","Закопати"],correct:0},
+{q:"Що допомагає природі та зменшує сміття?",a:["Менше смітити та сортувати","Більше купувати","Ігнорувати сміття"],correct:0}
 ]
+
 };
 
-// 🌍 ЗАГАЛЬНИЙ ТЕСТ
-questionBank.all=Object.values(questionBank).flat();
-
-// ===== STATE =====
 let quiz=[];
 let current=0;
 let score=0;
@@ -242,79 +279,84 @@ const questionEl=document.getElementById("question");
 const answersEl=document.getElementById("answers");
 const resultEl=document.getElementById("result");
 
-// ===== SHUFFLE (КРАЩИЙ) =====
 function shuffle(array){
-  for(let i=array.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [array[i],array[j]]=[array[j],array[i]];
-  }
-  return array;
+for(let i=array.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[array[i],array[j]]=[array[j],array[i]];
+}
+return array;
 }
 
-// ===== SELECT TOPIC =====
 function setTopic(topic){
-  quiz=shuffle([...questionBank[topic]]);
-  titleEl.textContent="Тема обрана";
-  startBtn.style.display="inline-block";
-  resetView();
+quiz=shuffle([...questionBank[topic]]);
+titleEl.textContent="Тема обрана";
+startBtn.style.display="inline-block";
+resetView();
 }
 
 function resetView(){
-  progressEl.textContent="";
-  questionEl.textContent="";
-  answersEl.innerHTML="";
-  resultEl.textContent="";
+progressEl.textContent="";
+questionEl.textContent="";
+answersEl.innerHTML="";
+resultEl.textContent="";
 }
 
-// ===== START =====
 function startTest(){
-  current=0;
-  score=0;
-  startBtn.style.display="none";
-  showQuestion();
+current=0;
+score=0;
+startBtn.style.display="none";
+showQuestion();
 }
 
-// ===== SHOW QUESTION =====
 function showQuestion(){
-  const q=quiz[current];
 
-  progressEl.textContent=`Питання ${current+1} з ${quiz.length}`;
-  questionEl.textContent=q.q;
-  questionEl.className="fade";
+const q=quiz[current];
 
-  answersEl.innerHTML="";
-  q.a.forEach((text,i)=>{
-    const btn=document.createElement("button");
-    btn.className="answer fade";
-    btn.textContent=text;
-    btn.onclick=()=>selectAnswer(i);
-    answersEl.appendChild(btn);
-  });
+progressEl.textContent=`Питання ${current+1} з ${quiz.length}`;
+questionEl.textContent=q.q;
+questionEl.className="fade";
+
+answersEl.innerHTML="";
+
+let answers=q.a.map((text,i)=>({text:text,correct:i===q.correct}));
+
+answers=shuffle(answers);
+
+answers.forEach(ans=>{
+const btn=document.createElement("button");
+btn.className="answer fade";
+btn.textContent=ans.text;
+
+btn.onclick=()=>{
+if(ans.correct) score++;
+
+current++;
+
+if(current<quiz.length){
+setTimeout(showQuestion,200);
+}else{
+showResult();
 }
+};
 
-function selectAnswer(i){
-  if(i===quiz[current].correct) score++;
-  current++;
-
-  if(current<quiz.length){
-    setTimeout(showQuestion,200);
-  }else{
-    showResult();
-  }
+answersEl.appendChild(btn);
+});
 }
 
 function showResult(){
-  questionEl.textContent="";
-  answersEl.innerHTML="";
-  progressEl.textContent="Тест завершено";
 
-  let msg="";
-  if(score>=Math.ceil(quiz.length*0.8)) msg="🔥 Відмінно!";
-  else if(score>=Math.ceil(quiz.length*0.5)) msg="👍 Добре!";
-  else msg="📚 Варто повторити";
+questionEl.textContent="";
+answersEl.innerHTML="";
+progressEl.textContent="Тест завершено";
 
-  resultEl.textContent=`Твій результат: ${score} / ${quiz.length} — ${msg}`;
+let msg="";
+if(score>=Math.ceil(quiz.length*0.8)) msg="🔥 Відмінно!";
+else if(score>=Math.ceil(quiz.length*0.5)) msg="👍 Добре!";
+else msg="📚 Варто повторити";
+
+resultEl.textContent=`Твій результат: ${score} / ${quiz.length} — ${msg}`;
 }
+
 </script>
 
 </body>
