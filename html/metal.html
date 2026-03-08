@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Метал — EcoFuture</title>
-  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="../css/index.css">
   <meta name="description" content="Метал: джерела забруднення, негативні наслідки та кроки вирішення.">
 </head>
 <body>
@@ -12,115 +12,17 @@
     <h1>🔩 Метал</h1>
     <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
     <nav id="mainNav">
-      <a href="/index.html">🏠 Головна</a>
-      <a href="/html/organic.html">🍎 Органіка</a>
-      <a href="/html/map.html">🗺️Карта</a>
-      <a href="/html/game.html">🎮 Міні-гра</a>
+      <a href="../index.html">🏠 Головна</a>
+      <a href="organic.html">🍎 Органіка</a>
+      <a href="map.html">🗺️Карта</a>
+      <a href="game.html">🎮 Міні-гра</a>
+      <a href="test.html">📚 Тест</a>
     </nav>
   </header>
-<style>
-  /* ДІАЛОГОВИЙ КОМІКС */
-.dialog-comic {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 40px;
-  margin: 50px 0;
-  flex-wrap: wrap;
-}
-
-.dialog-character {
-  width: 45%;
-  text-align: center;
-  cursor: pointer;
-}
-
-.avatar {
-  font-size: 6rem;
-  margin-top: 10px;
-}
-
-/* ХМАРИНКА */
-.speech-bubble {
-  position: relative;
-  background: #ffffff;
-  border: 3px solid #000;
-  border-radius: 20px;
-  padding: 16px;
-  font-size: 1rem;
-  line-height: 1.4;
-  box-shadow: 4px 4px 0 #000;
-  min-height: 80px;
-}
-
-/* Хвостик */
-.left .speech-bubble::after {
-  content: "";
-  position: absolute;
-  bottom: -15px;
-  left: 40px;
-  border-width: 15px 15px 0;
-  border-style: solid;
-  border-color: #000 transparent transparent transparent;
-}
-.left .speech-bubble::before {
-  content: "";
-  position: absolute;
-  bottom: -12px;
-  left: 42px;
-  border-width: 13px 13px 0;
-  border-style: solid;
-  border-color: #fff transparent transparent transparent;
-}
-
-.right .speech-bubble::after {
-  content: "";
-  position: absolute;
-  bottom: -15px;
-  right: 40px;
-  border-width: 15px 15px 0;
-  border-style: solid;
-  border-color: #000 transparent transparent transparent;
-}
-.right .speech-bubble::before {
-  content: "";
-  position: absolute;
-  bottom: -12px;
-  right: 42px;
-  border-width: 13px 13px 0;
-  border-style: solid;
-  border-color: #fff transparent transparent transparent;
-}
-
-@media (max-width: 768px) {
-  .dialog-character {
-    width: 100%;
-  }
-}
-
-/* ФОТО ПІД КОМІКСОМ */
-.comic-photo {
-  width: 100%;
-  margin: 50px auto;
-  display: flex;
-  justify-content: center;
-}
-
-.comic-photo img {
-  width: 100%;
-  max-width: 1200px;   /* ← ОСЬ ТУТ ГОЛОВНЕ */
-  height: auto;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-</style>
   <main>
     <!-- ВІДЕО -->
-  <video controls width="100%" style="
-        border-radius: 16px;
-        margin-top: 12px;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.15);">
-        <source src="/video/Прихована_цінність_сміття.mp4" type="video/mp4">
+  <video controls width="100%">
+        <source src="../video/Прихована_цінність_сміття.mp4" type="video/mp4">
   </video>
 
   <section>
@@ -132,7 +34,7 @@
     <div class="dialog-character left">
       <div class="speech-bubble" id="leftBubble"></div>
       <div class="avatar">
-        <img src="/images/boy.png" alt="Еко-герой">
+        <img src="../images/boy.png" alt="Еко-герой">
       </div>
       <strong>Еко-Герой</strong>
     </div>
@@ -140,7 +42,7 @@
     <div class="dialog-character right">
       <div class="speech-bubble" id="rightBubble"></div>
       <div class="avatar">
-        <img src="/images/girl.png" alt="Еко-подруга">
+        <img src="../images/girl.png" alt="Еко-подруга">
       </div>
       <strong>Еко-Подруга</strong>
     </div>
@@ -148,7 +50,7 @@
   </div>
 </section>
  <div class="comic-photo">
-  <img src="/images/метал.png" alt="Фото автора">
+  <img src="../images/метал.png" alt="Фото автора">
 </div>
     <section>
       <h2>Що таке металеві відходи?</h2>
